@@ -20,13 +20,13 @@
 
 <table align="center">
   <tr>
+    <td align="center" valign="middle">
+      <img src="https://skillicons.dev/icons?i=php,laravel,mysql,git,github,vscode,html,css,js&perline=3" width="190" alt="Tech stack" />
+    </td>
     <td valign="middle" width="300">
       🎓&nbsp;Backend&nbsp;Developer<br><br>
       💻&nbsp;Laravel&nbsp;Enthusiast<br><br>
       😹&nbsp;Lifelong&nbsp;Learner
-    </td>
-    <td align="center" valign="middle">
-      <img src="https://skillicons.dev/icons?i=php,laravel,mysql,git,github,vscode,html,css,js&perline=3" width="190" alt="Tech stack" />
     </td>
   </tr>
 </table>
