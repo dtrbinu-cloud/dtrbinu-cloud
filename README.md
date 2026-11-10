@@ -10,7 +10,7 @@
 
 ---
 
-<p align="center">
+<p align="left">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/dtrbinu-cloud/binufikri/output/github-snake-dark.svg" />
     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/dtrbinu-cloud/binufikri/output/github-snake.svg" />
@@ -18,12 +18,12 @@
   </picture>
 </p>
 
-<table align="center">
+<table width="100%">
   <tr>
-    <td align="center" valign="middle">
+    <td align="left" valign="middle" width="220">
       <img src="https://skillicons.dev/icons?i=php,laravel,mysql,git,github,vscode,html,css,js&perline=3" width="190" alt="Tech stack" />
     </td>
-    <td valign="middle" width="300">
+    <td align="left" valign="middle">
       🎓&nbsp;Backend&nbsp;Developer<br><br>
       💻&nbsp;Laravel&nbsp;Enthusiast<br><br>
       😹&nbsp;Lifelong&nbsp;Learner
