@@ -15,9 +15,11 @@
 ## 📈 My GitHub Contributions
 
 <p align="center">
-  <a href="https://github.com/dtrbinu-cloud">
-    <img src="https://github-readme-activity-graph.vercel.app/graph?username=dtrbinu-cloud&theme=github-compact&hide_border=true&area=true" width="100%" alt="GitHub Contribution Activity Graph" />
-  </a>
+  <img
+    src="https://ghchart.rshah.org/00C853/dtrbinu-cloud"
+    alt="GitHub Contribution Graph"
+    width="100%"
+  />
 </p>
 
 ---
