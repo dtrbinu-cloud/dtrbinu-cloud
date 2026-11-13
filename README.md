@@ -10,13 +10,24 @@
 
 ---
 
-<p align="left">
+## 📈 My GitHub Contributions
+
+<p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/dtrbinu-cloud/binufikri/output/github-snake-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/dtrbinu-cloud/binufikri/output/github-snake.svg" />
-    <img alt="snake animation" src="https://raw.githubusercontent.com/dtrbinu-cloud/binufikri/output/github-snake.svg" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/contributions-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="./assets/contributions-light.svg" />
+    <img alt="GitHub Contribution Graph" src="./assets/contributions-light.svg" width="100%" />
   </picture>
 </p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/dtrbinu-cloud/dtrbinu-cloud/output/github-snake-dark.svg" />
+    <img alt="Snake animation" src="https://raw.githubusercontent.com/dtrbinu-cloud/dtrbinu-cloud/output/github-snake.svg" width="100%" />
+  </picture>
+</p>
+
+---
 
 <table width="100%">
   <tr>
@@ -24,11 +35,11 @@
       <img src="https://skillicons.dev/icons?i=php,laravel,mysql,git,github,vscode,html,css,js&perline=3" width="190" alt="Tech stack" />
     </td>
     <td align="left" valign="middle">
-      🎓 Backend Developer<br><br>
-      💻 Laravel Enthusiast<br><br>
-      😹 Lifelong Learner
+      🎓&nbsp;Backend&nbsp;Developer<br><br>
+      💻&nbsp;Laravel&nbsp;Enthusiast<br><br>
+      😹&nbsp;Lifelong&nbsp;Learner
     </td>
   </tr>
 </table>
 
----\
+---
