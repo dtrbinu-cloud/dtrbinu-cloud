@@ -1,0 +1,184 @@
+name: Generate contribution card
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate SVG
+        env:
+          GH_USER: dtrbinu-cloud
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node --input-type=module - <<'JS'
+          // Generate contribution heatmap SVG cards (dark + light) from GitHub GraphQL API.
+          // Usage: node scripts/generate-contributions.mjs [--input mock.json]
+          import { writeFileSync, readFileSync, mkdirSync } from "node:fs";
+
+          const USER = process.env.GH_USER || "dtrbinu-cloud";
+          const TOKEN = process.env.GH_PAT || process.env.GITHUB_TOKEN;
+          const OUT_DIR = process.env.OUT_DIR || "assets";
+
+          const QUERY = `
+          query($login: String!) {
+            user(login: $login) {
+              contributionsCollection {
+                contributionCalendar {
+                  totalContributions
+                  weeks {
+                    contributionDays { date contributionCount contributionLevel }
+                  }
+                }
+              }
+            }
+          }`;
+
+          const LEVELS = {
+            NONE: 0,
+            FIRST_QUARTILE: 1,
+            SECOND_QUARTILE: 2,
+            THIRD_QUARTILE: 3,
+            FOURTH_QUARTILE: 4,
+          };
+
+          const THEMES = {
+            dark: {
+              bg: "#14181c",
+              border: "#2a313a",
+              title: "#f0f3f6",
+              text: "#9aa4b0",
+              cells: ["#232a32", "#3b4d66", "#4a6a94", "#5b8bc7", "#8fc2ff"],
+            },
+            light: {
+              bg: "#ffffff",
+              border: "#d0d7de",
+              title: "#1f2328",
+              text: "#656d76",
+              cells: ["#ebedf0", "#c6dcf5", "#8fbbec", "#4f94de", "#0969da"],
+            },
+          };
+
+          async function fetchCalendar() {
+            const inputIdx = process.argv.indexOf("--input");
+            if (inputIdx !== -1) {
+              return JSON.parse(readFileSync(process.argv[inputIdx + 1], "utf8"));
+            }
+            if (!TOKEN) throw new Error("Missing GITHUB_TOKEN / GH_PAT");
+            const res = await fetch("https://api.github.com/graphql", {
+              method: "POST",
+              headers: {
+                Authorization: `bearer ${TOKEN}`,
+                "Content-Type": "application/json",
+                "User-Agent": "contrib-card",
+              },
+              body: JSON.stringify({ query: QUERY, variables: { login: USER } }),
+            });
+            if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+            const json = await res.json();
+            if (json.errors) throw new Error(JSON.stringify(json.errors));
+            return json.data.user.contributionsCollection.contributionCalendar;
+          }
+
+          function currentStreak(weeks) {
+            const days = weeks.flatMap((w) => w.contributionDays);
+            let i = days.length - 1;
+            // today may not have contributions yet: don't break the streak because of it
+            if (days[i] && days[i].contributionCount === 0) i--;
+            let streak = 0;
+            for (; i >= 0; i--) {
+              if (days[i].contributionCount > 0) streak++;
+              else break;
+            }
+            return streak;
+          }
+
+          const fmt = (n) => n.toLocaleString("en-US");
+          const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+          function render(calendar, themeName) {
+            const t = THEMES[themeName];
+            const weeks = calendar.weeks;
+            const CELL = 16, GAP = 4, STEP = CELL + GAP, RADIUS = 4;
+            const PAD = 28;
+            const gridW = weeks.length * STEP - GAP;
+            const gridH = 7 * STEP - GAP;
+            const HEADER = 44, MONTH_ROW = 26;
+            const W = gridW + PAD * 2;
+            const H = PAD + HEADER + MONTH_ROW + gridH + PAD;
+            const gridX = PAD, gridY = PAD + HEADER + MONTH_ROW;
+
+            const streak = currentStreak(weeks);
+
+            // month labels: put label where the month changes, min 3 weeks apart
+            let labels = "";
+            let lastMonth = -1, lastX = -999;
+            weeks.forEach((w, i) => {
+              const first = w.contributionDays[0];
+              if (!first) return;
+              const m = new Date(first.date + "T00:00:00Z").getUTCMonth();
+              if (m !== lastMonth) {
+                const x = gridX + i * STEP;
+                if (x - lastX >= STEP * 3) {
+                  labels += `<text x="${x}" y="${gridY - 10}" class="m">${MONTHS[m]}</text>`;
+                  lastX = x;
+                }
+                lastMonth = m;
+              }
+            });
+
+            let cells = "";
+            weeks.forEach((w, wi) => {
+              w.contributionDays.forEach((d, di) => {
+                const lvl = LEVELS[d.contributionLevel] ?? 0;
+                const x = gridX + wi * STEP;
+                const y = gridY + di * STEP;
+                cells += `<rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="${RADIUS}" fill="${t.cells[lvl]}"><title>${d.date}: ${d.contributionCount} contributions</title></rect>`;
+              });
+            });
+
+            return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="GitHub contributions of ${USER}">
+          <style>
+            text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; }
+            .t { font-size: 20px; font-weight: 600; fill: ${t.title}; }
+            .s { font-size: 18px; fill: ${t.text}; }
+            .m { font-size: 14px; fill: ${t.text}; }
+          </style>
+          <rect x="0.5" y="0.5" width="${W - 1}" height="${H - 1}" rx="20" fill="${t.bg}" stroke="${t.border}"/>
+          <text x="${PAD}" y="${PAD + 24}" class="t">Past Year</text>
+          <text x="${PAD + 100}" y="${PAD + 24}" class="s">${fmt(calendar.totalContributions)} Contributions</text>
+          <text x="${PAD + 330}" y="${PAD + 24}" class="s">\u{1F525} ${streak} Days</text>
+          ${labels}
+          ${cells}
+          </svg>
+          `;
+          }
+
+          const calendar = await fetchCalendar();
+          mkdirSync(OUT_DIR, { recursive: true });
+          for (const name of Object.keys(THEMES)) {
+            writeFileSync(`${OUT_DIR}/contributions-${name}.svg`, render(calendar, name));
+          }
+          console.log(`Generated ${OUT_DIR}/contributions-{dark,light}.svg for ${USER}`);
+          JS
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/
+          git diff --cached --quiet || git commit -m "chore: update contribution card"
+          git push
