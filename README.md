@@ -10,6 +10,16 @@
 
 ---
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/contributions-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="./assets/contributions-light.svg" />
+    <img alt="GitHub Contribution Graph" src="./assets/contributions-light.svg" width="100%" />
+  </picture>
+</p>
+
+---
+
 <table width="100%">
   <tr>
     <td align="left" valign="middle" width="220">
