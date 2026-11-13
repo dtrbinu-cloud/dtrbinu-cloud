@@ -1,3 +1,5 @@
+# Hey, It's Binu 👋
+
 <h1 align="center">Hey, It's Binu 👋</h1>
 
 <p align="center">
@@ -13,11 +15,11 @@
 ## 📈 My GitHub Contributions
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/contributions-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="./assets/contributions-light.svg" />
-    <img alt="GitHub Contribution Graph" src="./assets/contributions-light.svg" width="100%" />
-  </picture>
+  <img
+    src="https://ghchart.rshah.org/00C853/dtrbinu-cloud"
+    alt="GitHub Contribution Graph"
+    width="100%"
+  />
 </p>
 
 ---
@@ -30,9 +32,4 @@
     <td align="left" valign="middle">
       🎓&nbsp;Backend&nbsp;Developer<br><br>
       💻&nbsp;Laravel&nbsp;Enthusiast<br><br>
-      😹&nbsp;Lifelong&nbsp;Learner
-    </td>
-  </tr>
-</table>
-
----
+      😹&nbsp;Lifelong&nbsp
