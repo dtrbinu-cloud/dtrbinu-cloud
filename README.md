@@ -1,11 +1,5 @@
-<h1 align="center">Hey, It's Binu 👋</h1>
-
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Poppins&size=26&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&width=700&lines=Backend+Developer;Laravel+Developer;REST+API+Builder;PHP+Developer;Always+Learning+New+Things" />
-    <source media="(prefers-color-scheme: light)" srcset="https://readme-typing-svg.demolab.com?font=Poppins&size=26&duration=3000&pause=1000&color=0969DA&center=true&vCenter=true&width=700&lines=Backend+Developer;Laravel+Developer;REST+API+Builder;PHP+Developer;Always+Learning+New+Things" />
-    <img alt="Backend Developer | Laravel Developer | REST API Builder | PHP Developer" src="https://readme-typing-svg.demolab.com?font=Poppins&size=26&duration=3000&pause=1000&color=0969DA&center=true&vCenter=true&width=700&lines=Backend+Developer;Laravel+Developer;REST+API+Builder;PHP+Developer;Always+Learning+New+Things" />
-  </picture>
+  <img src="./assets/banner.svg" width="100%" alt="Hey, It's Binu - Backend Developer | Laravel Developer | REST API Builder | PHP Developer" />
 </p>
 
 ---
@@ -32,5 +26,3 @@
     </td>
   </tr>
 </table>
-
----
