@@ -8,10 +8,6 @@
   </picture>
 </p>
 
-<p align="center">
-  <img src="./assets/snake-banner.svg" width="100%" alt="Snake animation" />
-</p>
-
 ---
 
 <p align="center">
@@ -36,3 +32,5 @@
     </td>
   </tr>
 </table>
+
+---
