@@ -1,5 +1,3 @@
-# Hey, It's Binu 👋
-
 <h1 align="center">Hey, It's Binu 👋</h1>
 
 <p align="center">
@@ -12,17 +10,13 @@
 
 ---
 
-## 📈 My GitHub Contributions
-
-<p align="center">
-  <img
-    src="https://ghchart.rshah.org/00C853/dtrbinu-cloud"
-    alt="GitHub Contribution Graph"
-    width="100%"
-  />
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/dtrbinu-cloud/binufikri/output/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/dtrbinu-cloud/binufikri/output/github-snake.svg" />
+    <img alt="snake animation" src="https://raw.githubusercontent.com/dtrbinu-cloud/binufikri/output/github-snake.svg" width="100%" />
+  </picture>
 </p>
-
----
 
 <table width="100%">
   <tr>
@@ -30,6 +24,11 @@
       <img src="https://skillicons.dev/icons?i=php,laravel,mysql,git,github,vscode,html,css,js&perline=3" width="190" alt="Tech stack" />
     </td>
     <td align="left" valign="middle">
-      🎓&nbsp;Backend&nbsp;Developer<br><br>
-      💻&nbsp;Laravel&nbsp;Enthusiast<br><br>
-      😹&nbsp;Lifelong&nbsp
+      🎓 Backend Developer<br><br>
+      💻 Laravel Enthusiast<br><br>
+      😹 Lifelong Learner
+    </td>
+  </tr>
+</table>
+
+---\
