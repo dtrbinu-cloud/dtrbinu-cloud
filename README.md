@@ -1,3 +1,5 @@
+# Hey, It's Binu 👋
+
 <h1 align="center">Hey, It's Binu 👋</h1>
 
 <p align="center">
@@ -10,13 +12,15 @@
 
 ---
 
-<p align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/dtrbinu-cloud/binufikri/output/github-snake-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/dtrbinu-cloud/binufikri/output/github-snake.svg" />
-    <img alt="snake animation" src="https://raw.githubusercontent.com/dtrbinu-cloud/binufikri/output/github-snake.svg" width="100%" />
-  </picture>
+## 📈 My GitHub Contributions
+
+<p align="center">
+  <a href="https://github.com/dtrbinu-cloud">
+    <img src="https://github-readme-activity-graph.vercel.app/graph?username=dtrbinu-cloud&theme=github-compact&hide_border=true&area=true" width="100%" alt="GitHub Contribution Activity Graph" />
+  </a>
 </p>
+
+---
 
 <table width="100%">
   <tr>
