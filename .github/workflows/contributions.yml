@@ -2,11 +2,19 @@ name: Generate contribution card
 
 on:
   schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:
+    - cron: "*/5 * * * *"      # tiap 5 menit (batas tercepat GitHub)
+  workflow_dispatch:           # tombol Run workflow manual
+  push:
+    branches: [main]           # langsung jalan tiap kamu push ke repo ini
+  repository_dispatch:
+    types: [update-card]       # dipicu dari repo lain (opsional)
 
 permissions:
   contents: write
+
+concurrency:
+  group: contribution-card
+  cancel-in-progress: true
 
 jobs:
   generate:
@@ -16,7 +24,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Generate SVG
         env:
@@ -180,5 +188,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets/
-          git diff --cached --quiet || git commit -m "chore: update contribution card"
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git commit -m "chore: update contribution card"
+          git pull --rebase --autostash origin main
           git push
